@@ -27,3 +27,7 @@ path_GDP            = Path.joinpath(path_PROJECT, "Data/BHM/")
 # OUTPUT PATHS
 path_MESMER_fldmean = Path.joinpath(path_PROJECT, "Data/MESMER/fldmean/")
 path_MESMER_char    = Path.joinpath(path_PROJECT, "Data/MESMER/characteristics/")
+
+# Analysis Results
+path_CHAR_results   =  Path.joinpath(path_PROJECT, "Data/Results/Key_Characteristics/")
+

@@ -1,5 +1,6 @@
 import sys
-sys.path.append('/Users/schoens/Documents/Projekte/Econ/Code/v3/')
+import os
+sys.path.append(os.getcwd())
 
 import xarray as xr
 import numpy as np

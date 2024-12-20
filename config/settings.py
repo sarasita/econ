@@ -18,13 +18,7 @@ scenario_names_dict  = dict(zip(scenarios, scenario_names))
 n_scenarios         = len(scenarios)
 focus_scenarios     = ['SP', 'Ref', 'Neg',  'GS', 'ssp534-over', 'CurPol']
 focus_scenarios_labels = ['SP', 'REF', 'NEG',  'GS', 'SSP5-3.4-OS', 'CurPol']
-# colors ocus scenarios
-# focus_scenarios_colors = ['blue', 
-#                           '#00BFFF',
-#                           np.array([0.92907237, 0.64073303, 0.41912363, 1.0]),
-#                           np.array([0.87199254, 0.3633634 , 0.35974223, 1.]),
-#                           np.array([0.60407977, 0.21017746, 0.43913439, 1.]),
-#                           np.array([0.29408557, 0.13721193, 0.38442775, 1.])]
+
 scenarios_colors = [
     '#001933',
     '#003366', 
@@ -49,7 +43,6 @@ focus_scenarios_colors = [
 focus_scenarios_color_dict = dict(zip(focus_scenarios, focus_scenarios_colors))
 scenarios_color_dict = dict(zip(scenarios, scenarios_colors))
 n_focus_scenarios   = len(focus_scenarios)
-
 
 gdp_target_year     = 2100
 gdp_ref_year        = 2015
@@ -99,8 +92,7 @@ cmap_negref    =  LinearSegmentedColormap.from_list("negref", [focus_scenarios_c
 # focus countries 
 focus_countries        = ['DEU', 'NZL', 'USA', 'CHN', 'BRA', 'IND', 'NGA']
 focus_countries_names  = ['Germany', 'New Zealand', 'USA', 'China', 'Brazil', 'India', 'Nigeria']
-# focus_countries_colors = ["#1E90FF",  "#00BFFF", "#DAA520", "#FF6347", "#DC143C", "#3CB371", "#9932CC"]
-# focus_countries_colors = ["orange", "darkslategrey",  "teal", "mediumseagreen", 'chocolate', "crimson", "darkmagenta"]
+
 focus_countries_colors = [
     '#2A9D8F',  # Cool Teal
     '#3CB371',  # Medium Green

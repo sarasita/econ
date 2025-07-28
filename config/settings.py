@@ -18,6 +18,8 @@ scenario_names_dict  = dict(zip(scenarios, scenario_names))
 n_scenarios         = len(scenarios)
 focus_scenarios     = ['SP', 'Ref', 'Neg',  'GS', 'ssp534-over', 'CurPol']
 focus_scenarios_labels = ['SP', 'REF', 'NEG',  'GS', 'SSP5-3.4-OS', 'CurPol']
+continous_scenarios = ['Ref', 'GS', 'CurPol']
+overshoot_scenrios = ['SP', 'Neg', 'ssp534-over']
 
 scenarios_colors = [
     '#001933',
@@ -54,21 +56,48 @@ n_years             = 86
 
 # INPUT PATHS 
 path_PROJECT        = Path("/Users/schoens/Documents/Projekte/Econ/")
-path_DATA           = path_PROJECT / "Data_2410"
+path_DATA           = path_PROJECT / "Data_v2"
 path_MESMER         = path_DATA / "MESMER"
 path_FAIR           = path_DATA / "FaIR"
-path_GDP            = path_DATA / "BHM"
-file_burke          = path_GDP / '2410 Full Data BHM Main Result.csv'
-file_tas            = path_GDP / '2410_countrylevel_total.csv'
+path_GDP            = path_DATA / "GDP"
+path_INTERIM        = path_DATA / "interim"
+path_INTERIM_GDP    = path_INTERIM / "GDP" 
+path_OUT            = path_DATA / "output"
+path_OUT_PW         = path_OUT / "peak_warming" 
+path_OUT_REVERSIBILITY = path_OUT / "reversibility"
+path_LATEX_TABLES   = path_OUT / "latex_tables" 
+file_burke          = path_GDP / 'GDP_Burke-et-al_Results.csv'
+file_nath           = path_GDP / 'GDP_Nath-et-al_Results.csv'
+file_jps            = path_GDP / 'GDP_Jiao-et-al_Results.csv'
+file_howard         = path_GDP / 'GDP_Howard-Sterner_Results.csv'
+# file_uncertainty    = path_GDP / '20250226 Uncertainty BHM Countries.csv'
+file_tas            = path_GDP / 'temperature_countrylevel_total.csv'
 
 # OUTPUT PATHS
 path_MESMER_fldmean = path_MESMER / "fldmean"
 path_MESMER_char    = path_MESMER / "characteristics"
-path_GRAPHICS       = path_PROJECT / "Graphics" 
+path_GRAPHICS       = path_PROJECT / "Graphics_JPS" 
 
 # Analysis Results
 path_CHAR_results   = path_PROJECT / "Data_2410" / "Results" / "Key_Characteristics"
 path_CLUSTER_results= path_PROJECT / "Data_2410" / "Results" / "Clustering"
+
+latex_pw_summary_file = path_LATEX_TABLES / 'gdp_peak-warming_summary.txt'
+latex_2100_summary_file = path_LATEX_TABLES / 'gdp_2100_summary.txt'
+latex_regression_ntwr_summary_file = path_LATEX_TABLES / 'gdp_regrression-on-ntwr_summary.txt'
+latex_nogrowth_file = path_LATEX_TABLES / 'nogrowth-by-scenario_summary.txt'
+latex_reversibility_file = path_LATEX_TABLES / 'reversibility.txt'
+latex_reversibility_NegvsRef_file = path_LATEX_TABLES / 'reversibility_NegvsRef.txt'
+
+# SELECTED FILES
+GDP_files = [file_howard, file_nath, file_jps]
+GDP_interim_dataset_names = ['Howard GDP.csv', 'Nath-persistent GDP.csv', 'JPS GDP.csv']
+GDP_labels = ['Howard & Sterner', 'Nath et al.', 'Jiao et al.']
+PW_dataset_names = ['Howard_PW.csv', 'Nath-persistent_PW.csv', 'JPS_PW.csv']
+reversibility_file = path_OUT_REVERSIBILITY / 'reversibility_dataset.csv'
+negref_kstest_file = path_OUT_REVERSIBILITY / 'negref_kstest_dataset.csv'
+negref_reverseyear_file = path_OUT_REVERSIBILITY / 'negref_reverseeyear_dataset.csv'
+n_datasets = len(GDP_files)
 
 glmt_thresholds     = [1.67, 1.79, 1.97, 2.00, 2.05, 2.10, 2.30, 2.50]
 gmt_thresholds      = [1.2, 1.3, 1.35, 1.4, 1.5]
@@ -76,14 +105,23 @@ gmt_thresholds      = [1.2, 1.3, 1.35, 1.4, 1.5]
 n_years_thslds      = [0]*5 
 sel_threshold       = 1.35
 
+fig_width = 18/2.54 
+fig_height = 18/2.54
+dpi = 300
+
+hatch_linewidth = .3
+linewidth = 1
+border_linewidth = .5 
+marker_edgewidth = .5
+marker_size = 5
 
 # found using model fitting
 sel_predictors      = ['tas_soc', 'tas_soc tas_baseline', 'gmt_eoc', 'gmt_eoc tas_baseline', 'gmt_exc', 'gmt_exc tas_baseline'] 
 
 # PLOTTING
-labelsize_small  = 15
-labelsize_medium = 16
-labelsize_large  = 17
+labelsize_small  = 5
+labelsize_medium = 6
+labelsize_large  = 7
 
 # diverging colormap
 cmap_diverging = sns.diverging_palette(20, 220, as_cmap=True)

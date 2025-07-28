@@ -8,7 +8,10 @@ import pandas as pd
 from pathlib import Path
 import config.settings as cset
 
-# combine all this into a single dataframe of key GLMT characteristics 
+# generating a single dataframe that contains the gmt characteristics for all scenarios and runs
+# this is done by reading the FAIR runs and the MESMER ids, then extracting the gmt values from the FAIR runs
+# and combining them with the MESMER ids.
+# some metrics are threshold dependent, so we will compute a seperate datafrome for each threshold.
 
 if __name__ == '__main__': 
     gmt       = np.zeros((cset.n_scenarios*100, cset.n_years))
@@ -36,9 +39,12 @@ if __name__ == '__main__':
     # computing characteristics from gmt
     # ntwr, max, eoc, soc, cum, exc, uxc 
     gmt_tmp  = gmt.copy() - (np.ones_like(gmt).T*gmt[:, 0]).T
-    gmt_ntwr = np.sum(gmt_tmp[:, :25], axis = 1)/25 # mean warming between 2015 and 2040
+    
+    # # Warming per decade
+    # warming_per_decade = slope * 10
+    gmt_ntwr = np.polyfit(np.arange(15), gmt_tmp[:, :15].T, 1)[0]
     gmt_mtwr = np.sum(gmt_tmp[:, 25:50], axis = 1)/25 # mean warming between 2040 and 2065
-    gmt_ltwr = np.sum(gmt_tmp[:, 50:], axis = 1)/36 # mean warming between 2065 and 2100
+    gmt_ltwr = np.polyfit(np.arange(86), gmt_tmp[:, :].T, 1)[0] # mean warming between 2015 and 2100
     
     # gmt_max = np.sort(gmt, axis = 1)[:, -5:].mean(axis = 1) # mean of the 5 highest values
     gmt_max = np.max(gmt, axis = 1) # maximum value

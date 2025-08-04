@@ -1,5 +1,8 @@
-
-
+How to use this code
+1. Download this code to your local system
+2. Use requirements.txt to generate a sutiable python environment 
+3. Download the data from https://doi.org/10.5281/zenodo.16529682 and store as specified in the accompanying README 
+4. Execute the code in the following order (1) files in preprocessing; (2) files in analysis in the order stored in the folder
 
 Code structure: 
 - config
